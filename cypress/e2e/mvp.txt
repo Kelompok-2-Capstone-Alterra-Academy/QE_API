@@ -1,0 +1,14 @@
+
+
+CUSTOMER
+User Register and Login (Students -> Auth)
+Take Course (Students -> transcation)
+View Course History (gaada)
+Access Modules inside the course (gak perlu)
+Do the assignment in the course (gak perlu)
+
+Mentor
+Manage customer who enrolled (Course -> GetStudentByCourse)
+Manage Course (course)
+Manage Learningh Modules (modules)
+Manage Assignment
