@@ -52,6 +52,19 @@ Feature: Mentor
     And with reasonable time
     And return success status
 
+  Scenario: TC081 Get Modules by ID
+    Given mentor already login
+    And mentor want to get modules by ID
+    Then server will return the module
+    And with reasonable time
+    And return success status
+
+  Scenario: TC085 Get All Modules
+    Given mentor already login
+    And mentor want to get all modules
+    Then server will return all modules
+    And with reasonable time
+    And return success status
 
 
 
