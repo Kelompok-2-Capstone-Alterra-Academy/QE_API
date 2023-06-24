@@ -1,6 +1,6 @@
-Given ("mentor already logged in", () =>{
-    const token = Cypress.mentor('tokenMentor');
-    const authorization = `Bearer ${token}`;
+Given ("mentor already login", () =>{
+    const token = Cypress.env('tokenMentor');
+    cy.log("Token" + token)
 });
 
 And ('with reasonable time', () =>{
@@ -9,15 +9,16 @@ And ('with reasonable time', () =>{
 });
 And ('return success status', () =>{
     const codeStatus = Cypress.env('status')
-    cy.wrap(codeStatus).should('deep.equal', 200)
+    cy.wrap(codeStatus).should('be.oneOf', [200, 201])
 });
 
-
+//
+//
 // REGISTER MENTOR
 Given ("admin input mentor data", () =>{
     //GANTI GANTI GANTI
-    const pass = Cypress.mentor('regisEmail')
-    const email = Cypress.mentor('regisPassword')
+    const email = Cypress.env('regisEmail')
+    const pass = Cypress.env('regisPassword')
     cy.log("Email is "+email)
     cy.log("Password is "+pass)
     Then ("server should return mentor data", () =>{
@@ -43,11 +44,12 @@ Given ("admin input mentor data", () =>{
     })
 });
 
-
+//
+//
 //LOGIN LOGIN LOGIN
 Given ("Mentor input email and password", () =>{
-    const email = Cypress.mentor('mentorEmail') //GANTI KE ENV MENTOR
-    const pass = Cypress.mentor('mentorPassword') //GANTI KE ENV MENTOR
+    const email = Cypress.env('mentorEmail') //GANTI KE ENV MENTOR
+    const pass = Cypress.env('mentorPassword') //GANTI KE ENV MENTOR
     cy.log("Email is "+email)
     cy.log("Password is "+pass)
 
@@ -65,16 +67,19 @@ Given ("Mentor input email and password", () =>{
             const statusCode = response.status
             Cypress.env('time', duration)
             Cypress.env('status', statusCode)
-            Cypress.mentor('token', tokenMentor) //GANTI KE ENV MENTOR
+            Cypress.env('tokenMentor', token) //GANTI KE ENV MENTOR
 
         })
     })
 });
 
-
-
+//
+//
+//
 //SEE ALL COURSE
 And ('mentor want to see every course made', () =>{
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
     cy.api({
         method: 'GET',
         url: '/mentors/courses',
@@ -88,7 +93,7 @@ And ('mentor want to see every course made', () =>{
         const duration = response.duration
         Cypress.env('time', duration)
         Then ("server should return every course", () =>{
-            expect(response.body.data).to.eq() //GANTI JADI not empty
+            expect(response.body.data).not.null //GANTI JADI not empty
         })
 
     });
@@ -96,11 +101,14 @@ And ('mentor want to see every course made', () =>{
 });
 
 
+//
+//
+//CREATE COURSE
 
-
-//CreateCourses
-cy.log(authorization)
 And ('mentor wants to add course', () =>{
+    const course = Cypress.env('courseName')
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
     cy.api({
         method: 'POST',
         url: '/mentors/courses',
@@ -109,9 +117,9 @@ And ('mentor wants to add course', () =>{
             'Authorization': authorization
         },
         body:{
-            "course_name" : "ips 3" ,
+            "course_name" : course,
             "live_session_week" : "senin selasa kami 12.00-15.00",
-            "thumbnail":"https://github.com/Kelompok-2-Capstone-Alterra-Academy/golang-repo/tree/staging"
+            "thumbnail":"apple"
         }
 
     }).then((response) => {
@@ -119,10 +127,12 @@ And ('mentor wants to add course', () =>{
         Cypress.env('status', statusCode)
         const duration = response.duration
         Cypress.env('time', duration)
-        const id  = response.body.data.id
-        Cypress.mentor('courseID', id)
+        const id  = response.body.data.ID
+        Cypress.env('courseID', id)
+        cy.log(id)
+        cy.log(Cypress.env('courseID'))
         Then ("server should return course info", () =>{
-            expect(response.body.data.course_name).to.eq() //GANTI JADI COURSE NAME
+            expect(response.body.data.course_name).to.eq(course) //GANTI JADI COURSE NAME
         })
 
     });
@@ -130,13 +140,14 @@ And ('mentor wants to add course', () =>{
 });
 
 
-
-
 // SEE COURSE BY ID
 And ('mentor wants to see specific course', () =>{
+    const id  = Cypress.env('courseID')
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
 
     cy.api({
-        method: 'DEL',
+        method: 'GET',
         url: '/mentors/courses/'+id, //GANTI ID SAMA YANG MAU DIGANTI
         headers: {
             'Content-Type': 'application/json',
@@ -147,8 +158,8 @@ And ('mentor wants to see specific course', () =>{
         Cypress.env('status', statusCode)
         const duration = response.duration
         Cypress.env('time', duration)
-        Then ("server should return every course", () =>{
-            expect(response.body.message).to.eq("Success Delete Course`") //GANTI JADI not empty
+        Then ("server will return only the course specified", () =>{
+            expect(response.body.data.coursesCount[0].ID).to.eq(id) //GANTI JADI not empty
         })
 
     });
@@ -158,9 +169,11 @@ And ('mentor wants to see specific course', () =>{
 
 // DELETE COURSE BY ID
 And ('mentor want to delete course', () =>{
-    const id = Cypress.mentor('courseID')
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
+    const id = Cypress.env('courseID')
     cy.api({
-        method: 'DEL',
+        method: 'DELETE',
         url: '/mentors/courses/'+id, //GANTI ID SAMA YANG MAU DIGANTI
         headers: {
             'Content-Type': 'application/json',
@@ -171,12 +184,10 @@ And ('mentor want to delete course', () =>{
         Cypress.env('status', statusCode)
         const duration = response.duration
         Cypress.env('time', duration)
-        Then ("server should return every course", () =>{
+        Then ("server will return the course is deleted", () =>{
             expect(response.body.message).to.eq("Success Delete Course`") //GANTI JADI not empty
         })
-
     });
-
 });
 
 

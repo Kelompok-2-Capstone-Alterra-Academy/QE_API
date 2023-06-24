@@ -15,6 +15,6 @@ Access Modules inside the course (Students -> Modules -> GetModulesByCourseID)
 Mentor
 Mentor Login Logout DONE
 Manage customer who enrolled (Course -> GetStudentByCourse) (/mentors/courses/users/(id))
-Manage Course (course)
+Manage Course (course) DONE
 Manage Learningh Modules (modules)
 Manage Assignment

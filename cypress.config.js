@@ -10,22 +10,23 @@ module.exports = defineConfig({
     msg: "",
     email: "jono@gmail.com",
     pass: "newpassword",
-    regEmail: "",
+    regisEmail:"autotest1@mail.com",
+    regisPassword:"12345678",
+    mentorEmail:"dimastesting223@gmail.com",
+    mentorPassword:"12345678",
+    tokenMentor:"",
+    courseID:"",
+    courseName:"testingan 123"
   },
   mentor:{
-    regisEmail:"",
-    regisPassword:"",
-    mentorEmail:"",
-    mentorPassword:"",
-    tokenMentor:"",
-    courseID:""
+
   },
   students:{
 
   },
-  projectId: 'ii65as',
+  projectId: '',
   e2e: {
-    baseUrl: 'http://3.26.234.145:8081',
+    baseUrl: 'http://34.128.101.27:8080',
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('file:preprocessor', cucumber())
