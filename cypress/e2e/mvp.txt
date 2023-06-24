@@ -1,14 +1,20 @@
 
 
 CUSTOMER
-User Register and Login (Students -> Auth)
-Take Course (Students -> transcation)
-View Course History (gaada)
-Access Modules inside the course (gak perlu)
-Do the assignment in the course (gak perlu)
+Student Register DONE
+Verif OTP IGNORE
+Student Login DONE
+Student Forgot Password DONE
+Take Course (Students -> transcation) DONE
+
+
+
+Access Modules inside the course (Students -> Modules -> GetModulesByCourseID)
+
 
 Mentor
-Manage customer who enrolled (Course -> GetStudentByCourse)
+Mentor Login Logout DONE
+Manage customer who enrolled (Course -> GetStudentByCourse) (/mentors/courses/users/(id))
 Manage Course (course)
 Manage Learningh Modules (modules)
 Manage Assignment
