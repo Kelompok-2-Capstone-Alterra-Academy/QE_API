@@ -22,9 +22,6 @@ Then("server will return message successfully delete section", () => {});
 
 Then("server will return all modules", () => {});
 
-And("with reasonable time", () => {});
-
-And("return success status", () => {});
 
 And("mentor want to see every course made", () => {});
 
