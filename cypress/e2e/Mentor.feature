@@ -59,6 +59,20 @@ Feature: Mentor
     And with reasonable time
     And return success status
 
+  Scenario: TC082 Create Module
+    Given mentor already login
+    And mentor want to create module with valid data
+    Then server will return 201 create status
+    And with reasonable time
+    And return success status
+
+  Scenario: TC084 Delete Section
+    Given mentor already login
+    And mentor want to delete section by ID
+    Then server will return message successfully delete section
+    And with reasonable time
+    And return success status
+
   Scenario: TC085 Get All Modules
     Given mentor already login
     And mentor want to get all modules
