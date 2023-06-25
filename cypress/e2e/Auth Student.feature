@@ -49,3 +49,66 @@ Feature: STUDENT
     Then Server shouldn't send otp to email
     And with reasonable time
     And return success status
+
+  Scenario: TC088 Get course by student ID
+    Given user already logged in
+    And user wants to get course by student ID
+    Then user should be redirected to student course
+    And with reasonable time
+    And return success status
+
+  Scenario: TC089 Get in progress and done
+    Given user already logged in
+    And user wants to see progress
+    Then user should be redirected progress
+    And with reasonable time
+    And return success status
+
+  Scenario: TC090 Get module
+    Given user already logged in
+    And user wants to get learning module
+    Then user should be redirected choosen learning module
+    And with reasonable time
+    And return success status
+    
+  Scenario: TC091 Get all materials
+    Given user already logged in
+    And user wants to get all learning material
+    Then user should be redirected to learning material
+    And with reasonable time
+    And return success status
+    
+  Scenario: TC092 Get materials by ID
+    Given user already logged in
+    And user wants to get material by ID
+    Then user should be redirected learning material by ID
+    And with reasonable time
+    And return success status
+    
+  Scenario: TC093 Get all videos
+    Given user already logged in
+    And user wants to get all learning videos
+    Then user should be redirected to learning videos
+    And with reasonable time
+    And return success status
+    
+  Scenario: TC094 Get videos by ID
+    Given user already logged in
+    And user wants to buy get videos by ID
+    Then user should be redirected kearning videos by ID
+    And with reasonable time
+    And return success status
+    
+  Scenario: TC095 Get all quiz
+    Given user already logged in
+    And user wants to get all quiz
+    Then user should be redirected to quiz
+    And with reasonable time
+    And return success status
+    
+  Scenario: TC096 Get quiz by ID
+    Given user already logged in
+    And user wants to buy get quiz by ID
+    Then user should be redirected to quiz by ID
+    And with reasonable time
+    And return success status
