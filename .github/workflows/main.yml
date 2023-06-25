@@ -15,4 +15,4 @@ jobs:
         with:
           runTests: false
       - name: Run and record
-        run: npx cypress run --record --key f3f7f47b-cd86-48c5-8172-f324c25cf9ef --browser chrome  
+        run: npx cypress run --record --key 64e25f46-64b6-468b-8312-31981f1b1317 --browser chrome
