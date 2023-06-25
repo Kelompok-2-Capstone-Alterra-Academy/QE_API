@@ -17,7 +17,7 @@ Then("user shouldn't be redirected to payment gateway", () => {});
 
 Then("Server should send otp to email", () => {});
 
-Then("Server shouldn't send otp to email", () => {});
+Then("server should return error", () => {});
 
 Then("user should be redirected to student course", () => {});
 
