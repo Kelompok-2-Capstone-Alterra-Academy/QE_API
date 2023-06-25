@@ -36,7 +36,7 @@ module.exports = defineConfig({
   students:{
 
   },
-  projectId: '',
+  projectId: '2qaxrc',
   e2e: {
     baseUrl: 'http://34.128.101.27:8080',
     setupNodeEvents(on, config) {
