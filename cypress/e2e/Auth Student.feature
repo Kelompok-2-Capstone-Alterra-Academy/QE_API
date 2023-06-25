@@ -46,9 +46,8 @@ Feature: STUDENT
 
   Scenario: TC030 Students can't change the password with wrong email
     Given user send forgot password request
-    Then Server shouldn't send otp to email
+    Then server should return error
     And with reasonable time
-    And return success status
 
   Scenario: TC088 Get course by student ID
     Given user already logged in
