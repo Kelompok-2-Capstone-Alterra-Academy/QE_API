@@ -287,7 +287,7 @@ And ('user wants to get learning videos by id', () =>{
 
     cy.api({
         method: 'GET',
-        url: '/students/courses/video-attachments/92',
+        url: '/students/courses/video-attachments/3',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': authorization
@@ -298,7 +298,7 @@ And ('user wants to get learning videos by id', () =>{
         const duration = response.duration
         Cypress.env('time', duration)
         Then ("server should return specific video information", () =>{
-            expect(response.body.attachment_name).to.eq("Matematika 1")
+            expect(response.body.attachment_name).to.eq("Linux VPS")
         })
     });
 });
@@ -333,7 +333,7 @@ And ('user wants to get quiz by id', () =>{
 
     cy.api({
         method: 'GET',
-        url: '/students/courses/quiz-attachments/109',
+        url: '/students/courses/quiz-attachments/4',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': authorization
@@ -344,7 +344,7 @@ And ('user wants to get quiz by id', () =>{
         const duration = response.duration
         Cypress.env('time', duration)
         Then ("server should return specific quiz information", () =>{
-            expect(response.body.attachment_name).to.eq("Quiz 7")
+            expect(response.body.attachment_name).to.eq("Kuis Baru")
         })
     });
 });

@@ -17,7 +17,7 @@ module.exports = defineConfig({
     //password student (WAJIB DIISI)
     pass: "12345678",
     //register mentor (WAJIB DIISI)
-    regisEmailMentor:"autotest1@mail.com",
+    regisEmailMentor:"autotest11@mail.com",
     regisPassword:"12345678",
     //login mentor (WAJIB DIISI)
     mentorEmail:"dimastesting223@gmail.com",
@@ -27,7 +27,8 @@ module.exports = defineConfig({
     //course id setelah create (AUTOMATIOS TERISI/JANGAN DIISI)
     courseID:"",
     //course name untuk create
-    courseName:"testingan 123"
+    courseName:"testingan 123",
+    modules_id:""
   },
   mentor:{
 
@@ -37,7 +38,7 @@ module.exports = defineConfig({
   },
   projectId: '',
   e2e: {
-    baseUrl: 'http://3.26.234.145:8081',
+    baseUrl: 'http://34.128.101.27:8080',
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('file:preprocessor', cucumber())

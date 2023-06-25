@@ -72,6 +72,53 @@ Given ("Mentor input email and password", () =>{
         })
     })
 });
+//TC056 Post Mentor Login without Email
+Given ("Mentor didn't input email but input password", () =>{
+    const email = Cypress.env('mentorEmail') //GANTI KE ENV MENTOR
+    const pass = Cypress.env('mentorPassword') //GANTI KE ENV MENTOR
+    cy.log("Email is >blank<")
+    cy.log("Password is "+pass)
+
+    Then("server shouldnt return bearer token", () => {
+        cy.api({
+            method: "POST",
+            url: "/login",
+            body: {
+                "email": "",
+                "password": pass,
+            },
+            failOnStatusCode: false,
+        }).then((response) => {
+            expect(response.status).eq(401);
+            const duration = response.duration;
+            Cypress.env('time', duration);
+        });
+    });
+});
+
+//TC057 Post Mentor Login without password
+Given ("Mentor input email but didn't input password", () =>{
+    const email = Cypress.env('mentorEmail') //GANTI KE ENV MENTOR
+    cy.log("Email is " +email)
+    cy.log("Password is >blank<")
+
+    Then("server should return error", () => {
+        cy.api({
+            method: "POST",
+            url: "/login",
+            body: {
+                "email":email,
+                "password": ""
+            },
+            failOnStatusCode: false,
+        }).then((response) => {
+            expect(response.status).eq(401);
+            const duration = response.duration;
+            Cypress.env('time', duration);
+        });
+    });
+});
+
 
 //
 //
@@ -191,5 +238,109 @@ And ('mentor want to delete course', () =>{
 });
 
 
+//TC086 Get All Modules
+And ('mentor want to get all modules', () =>{
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
+    cy.api({
+        method: 'GET',
+        url: '/mentors/module',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': authorization
+        }
+    }).then((response) => {
+        const statusCode = response.status
+        Cypress.env('status', statusCode)
+        const duration = response.duration
+        Cypress.env('time', duration)
+        Then ("server will return all modules", () =>{
+            expect(response.body.data).not.null //GANTI JADI not empty
+        })
 
-//
+    });
+
+});
+
+//TC083 Create Module
+And ('mentor want to create module', () =>{
+    const course = Cypress.env('courseName')
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
+    cy.api({
+        method: 'POST',
+        url: '/mentors/module',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': authorization
+        },
+        body:{
+            "module_name" : "testing" ,
+            "section_id" : 1,
+            "description" : "ini adalah desciption"
+        }
+
+    }).then((response) => {
+        const statusCode = response.status
+        Cypress.env('status', statusCode)
+        const duration = response.duration
+        Cypress.env('time', duration)
+        const id  = response.body.data.ID
+        Cypress.env('courseID', id)
+        cy.log(id)
+        cy.log(Cypress.env('courseID'))
+        Then ("server will return module info", () =>{
+            expect(response.body.data.module_name).to.eq("testing")
+            const modules_id = response.body.data.ID
+            Cypress.env('modules_id', modules_id)
+
+        })
+    });
+});
+
+// TC082 Get Modules by ID
+And ('mentor want to get modules by ID', () =>{
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
+    const id = Cypress.env('modules_id')
+    cy.api({
+        method: 'GET',
+        url: '/mentors/module/'+id, //GANTI ID SAMA YANG MAU DIGANTI
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': authorization
+        }
+    }).then((response) => {
+        const statusCode = response.status
+        Cypress.env('status', statusCode)
+        const duration = response.duration
+        Cypress.env('time', duration)
+        Then ("server will return the module", () =>{
+            expect(response.body.data.ID).to.eq(id) //GANTI JADI not empty
+        })
+    });
+});
+
+
+//TC085 DELETE MODULE
+And ('mentor want to delete modules by ID', () =>{
+    const token = Cypress.env('tokenMentor');
+    const authorization = `Bearer ${token}`;
+    const id = Cypress.env('courseID')
+    cy.api({
+        method: 'DELETE',
+        url: '/mentors/module/'+id, //GANTI ID SAMA YANG MAU DIGANTI
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': authorization
+        }
+    }).then((response) => {
+        const statusCode = response.status
+        Cypress.env('status', statusCode)
+        const duration = response.duration
+        Cypress.env('time', duration)
+        Then ("server will return message successfully delete module", () =>{
+            expect(response.body.message).to.eq("Success Delete module`") //GANTI JADI not empty
+        })
+    });
+});
