@@ -6,6 +6,7 @@ Feature: Mentor
     And with reasonable time
     And return success status
 #DONE
+  @focus
   Scenario: TC055 Post Mentor Login
     Given Mentor input email and password
     Then server should return bearer token
@@ -24,6 +25,7 @@ Feature: Mentor
     And with reasonable time
     And return success status
 #DONE
+  @focus
   Scenario: TC067 See all course
     Given mentor already login
     And mentor want to see every course made

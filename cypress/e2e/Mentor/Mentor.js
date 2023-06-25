@@ -1,6 +1,6 @@
 Given ("mentor already login", () =>{
     const token = Cypress.env('tokenMentor');
-    cy.log("Token" + token)
+    cy.log("Token =" + token)
 });
 
 And ('with reasonable time', () =>{
@@ -17,7 +17,7 @@ And ('return success status', () =>{
 // REGISTER MENTOR
 Given ("admin input mentor data", () =>{
     //GANTI GANTI GANTI
-    const email = Cypress.env('regisEmail')
+    const email = Cypress.env('regisEmailMentor')
     const pass = Cypress.env('regisPassword')
     cy.log("Email is "+email)
     cy.log("Password is "+pass)
