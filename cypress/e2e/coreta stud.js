@@ -6,12 +6,9 @@
 // And return created status
 
 
-Then("server should return register data", () => {});
-
+//TC003
 Then("server shouldn't return register data", () => {});
-
-Then("user should be able to login", () => {});
-
+//TC022
 Then("user shouldn't be able to login", () => {});
 
 Then("user should be redirected to payment gateway", () => {});
@@ -65,3 +62,35 @@ And("user wants to buy get videos by ID", () => {});
 And("user wants to get all quiz", () => {});
 
 And("user wants to buy get quiz by ID", () => {});
+
+
+
+
+//TC001 Students can register with valid data
+Given ("user try to register using empty email", () =>{
+    //GANTI GANTI GANTI
+    const pass = Cypress.env('pass')
+    const email = Cypress.env('email')
+    cy.log("Email is "+email)
+    cy.log("Password is "+pass)
+    Then ("server should return status code 500", () =>{
+
+        cy.api("POST", "/registrasi",
+            //GANTI GANTI GANTI GANTI
+            {
+                "name": "Muhammad Nur Firdaus",
+                "email": "",
+                "phone_number": "+6281218446131",
+                "username": "daus123",
+                "password": "12345678",
+                "user_type": "students",
+                "school_name": "SMK Bakti",
+                "gender": "male"
+            }
+        ).then((response) => {
+            expect(response.status).to.eq(500)
+            const duration = response.duration
+            Cypress.env('time', duration)
+        })
+    })
+});

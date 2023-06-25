@@ -42,6 +42,35 @@ Given ("user try to register", () =>{
         })
     })
 });
+//TC003 STUDENTS CANT REGISTER
+Given ("user try to register using empty email", () =>{
+    //GANTI GANTI GANTI
+    const pass = Cypress.env('pass')
+    const email = Cypress.env('email')
+    cy.log("Email is "+email)
+    cy.log("Password is "+pass)
+    Then ("server should return status code 500", () =>{
+
+        cy.api("POST", "/registrasi",
+            //GANTI GANTI GANTI GANTI
+            {
+                "name": "Muhammad Nur Firdaus",
+                "email": "",
+                "phone_number": "6281218446131",
+                "username": "daus123",
+                "password": "12345678",
+                "user_type": "students",
+                "school_name": "SMK Bakti",
+                "gender": "male"
+            }
+        ).then((response) => {
+            expect(response.status).to.eq(500)
+            const duration = response.duration
+            Cypress.env('time', duration)
+        })
+    })
+});
+
 
 
 //TC021 Students can login with valid data
@@ -67,6 +96,27 @@ Given ("after user register and verify", () =>{
             Cypress.env('status', statusCode)
             Cypress.env('token', token)
 
+        })
+    })
+});
+//TC022 Students can't login with empty email
+Given ("after user register with empty email", () =>{
+    const email = Cypress.env('email')
+    const pass = Cypress.env('pass')
+    cy.log("Email is "+email)
+    cy.log("Password is "+pass)
+
+    Then ("user shouldnt be able to login", () =>{
+
+        cy.api("POST", "/login",
+            {
+                "email":"",
+                "password":`${pass}`,
+            }
+        ).then((response) => {
+            expect(response.status).oneOf([401])
+            const duration = response.duration
+            Cypress.env('time', duration)
         })
     })
 });
@@ -101,9 +151,40 @@ Given ("user already logged in", () =>{
             Then ("user should be able to see their information", () =>{
                 expect(response.body.transaction.item_details[0].id).to.eq() //COURSE JADI COURSE ID
             })
-
         });
+    })
+});
 
+//TC052 Students can take course ONGOING ONGOING ONGOING
+Given ("TC052 Students can't take course with empty course ID", () =>{
+    const token = Cypress.env('token');
+    const authorization = `Bearer ${token}`;
+    cy.log(authorization)
+    And ('user wants to buy course', () =>{
+        cy.api({
+            method: 'GET',
+            url: '/students/transaction',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': authorization
+            },
+            body:{
+                "price": 1000,
+                //ganti course id
+                "course_id": "" ,
+                "total_payment": 100000,
+                "admin_fees": 1000
+            }
+
+        }).then((response) => {
+            const statusCode = response.status
+            Cypress.env('status', statusCode)
+            const duration = response.duration
+            Cypress.env('time', duration)
+            Then ("user should be able to see their information", () =>{
+                expect(response.body.transaction.item_details[0].id).to.eq() //COURSE JADI COURSE ID
+            })
+        });
     })
 });
 
