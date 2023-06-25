@@ -3,6 +3,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   watchForFileChanges: false,
+  videoCompression: false,
   env:{
 
     postID: "",
@@ -30,12 +31,7 @@ module.exports = defineConfig({
     courseName:"testingan 123",
     modules_id:""
   },
-  mentor:{
 
-  },
-  students:{
-
-  },
   projectId: '2qaxrc',
   e2e: {
     baseUrl: 'http://34.128.101.27:8080',

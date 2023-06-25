@@ -348,32 +348,3 @@ And ('user wants to get quiz by id', () =>{
         })
     });
 });
-
-//GET AUTH INFO
-// Given ("user already logged in", () =>{
-//     const token = Cypress.env('token');
-//     const authorization = `Bearer ${token}`;
-//     cy.api({
-//         method: 'GET',
-//         url: '/auth/info',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': authorization
-//         },
-//
-//     }).then((response) => {
-//         Then ("user should be able to see their information", () =>{
-//             expect(response.status).to.eq(200)
-//             const statusCode = response.status
-//             Cypress.env('status', statusCode)
-//             const duration = response.duration
-//             Cypress.env('time', duration)
-//             expect(response.body.data.Email).to.eq(Cypress.env('email'))
-//         })
-//     })
-// });
-//
-
-//
-//
-

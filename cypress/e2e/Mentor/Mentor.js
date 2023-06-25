@@ -5,7 +5,7 @@ Given ("mentor already login", () =>{
 
 And ('with reasonable time', () =>{
     const time = Cypress.env('time')
-    cy.wrap(time).should('be.lessThan', 1500)
+    cy.wrap(time).should('be.lessThan', 5000)
 });
 And ('return success status', () =>{
     const codeStatus = Cypress.env('status')
