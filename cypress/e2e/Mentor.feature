@@ -55,38 +55,39 @@ Feature: Mentor
 
 
 
-    #BIKIN
   #BIKIN
   #BIKIN
-  Scenario: TC082 Create Module
-    Given mentor already login
-    And mentor want to create module with valid data
-    Then server will return 201 create status
-    And with reasonable time
-    And return success status
+  #BIKIN
 
-  Scenario: TC083 Update Module
-    Given mentor already login
-    And mentor want to update module with valid data
-    Then server will return 200 create status
-    And with reasonable time
-    And return success status
-
-  Scenario: TC081 Get Modules by ID
+  Scenario: TC082 Get Modules by ID
     Given mentor already login
     And mentor want to get modules by ID
     Then server will return the module
     And with reasonable time
     And return success status
 
-  Scenario: TC084 Delete Section
+  Scenario: TC083 Create Module
+    Given mentor already login
+    And mentor want to create module with valid data
+    Then server will return 201 create status
+    And with reasonable time
+    And return success status
+
+  Scenario: TC084 Update Module
+    Given mentor already login
+    And mentor want to update module with valid data
+    Then server will return 200 create status
+    And with reasonable time
+    And return success status
+
+  Scenario: TC085 Delete Module
     Given mentor already login
     And mentor want to delete modules by ID
     Then server will return message successfully delete section
     And with reasonable time
     And return success status
 
-  Scenario: TC085 Get All Modules
+  Scenario: TC086 Get All Modules
     Given mentor already login
     And mentor want to get all modules
     Then server will return all modules
