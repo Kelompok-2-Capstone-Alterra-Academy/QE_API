@@ -14,11 +14,11 @@ module.exports = defineConfig({
     //email login student (WAJIB DIISI)
     emailStudent:"studenttesting@mail.com",
     //email untuk register student (WAJIB DIISI DAN DIGANTI TIAP COMMIT)
-    regisEmailStudent: "testingcicd@gmail.com",
+    regisEmailStudent: "testingcicd01@gmail.com",
     //password student (WAJIB DIISI)
     pass: "12345678",
     //register mentor (WAJIB DIISI DAN DIGANTI TIAP COMMIT)
-    regisEmailMentor:"autotestcicd@mail.com",
+    regisEmailMentor:"autotestcicd12@mail.com",
     regisPassword:"12345678",
     //login mentor (WAJIB DIISI)
     mentorEmail:"dimastesting223@gmail.com",

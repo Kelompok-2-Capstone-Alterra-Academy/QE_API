@@ -1,6 +1,6 @@
 Feature: Mentor
   #DONE
-  Scenario:TC086 Register new mentor
+  Scenario:TC087 Register new mentor
     Given admin input mentor data
     Then server should return mentor data
     And with reasonable time
